@@ -14,7 +14,6 @@ const Hero = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedVideos, setLoadedVideos] = useState(0);
 
-  // Video sources, initially null for lazy loading
   const [videoSrcs, setVideoSrcs] = useState(Array(totalVideos).fill(null));
 
   const videoRefs = useRef([]);
@@ -24,10 +23,10 @@ const Hero = () => {
     if (el && !videoRefs.current.includes(el)) videoRefs.current.push(el);
   };
 
-  // Compute mini video index correctly
+  const handleVideoLoad = () => setLoadedVideos((prev) => prev + 1);
+
   const upcomingIndex = (currentIndex % totalVideos) + 1;
 
-  // Lazy load video by index
   const lazyLoadVideo = (index) => {
     if (!videoSrcs[index]) {
       setVideoSrcs((prev) => {
@@ -38,13 +37,10 @@ const Hero = () => {
     }
   };
 
-  // Preload main + mini video for instant experience
   useEffect(() => {
     lazyLoadVideo(currentIndex - 1);
     lazyLoadVideo(upcomingIndex - 1);
   }, [currentIndex]);
-
-  const handleVideoLoad = () => setLoadedVideos((prev) => prev + 1);
 
   const handleMiniVdClick = () => {
     setHasClicked(true);
@@ -55,7 +51,6 @@ const Hero = () => {
     if (loadedVideos >= 1) setIsLoading(false);
   }, [loadedVideos]);
 
-  // GSAP animations
   useEffect(() => {
     if (hasClicked && videoRefs.current[1]) {
       gsap.set(videoRefs.current[1], { visibility: 'visible' });
@@ -97,9 +92,8 @@ const Hero = () => {
 
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
-      {/* Placeholder for instant FCP */}
       {isLoading && (
-        <div className="absolute z-[100] h-dvh w-screen bg-violet-50 flex items-center justify-center">
+        <div className="flex-center absolute z-[100] h-dvh w-screen bg-violet-50">
           <div className="three-body">
             <div className="three-body__dot"></div>
             <div className="three-body__dot"></div>
@@ -120,7 +114,6 @@ const Hero = () => {
               src={videoSrcs[upcomingIndex - 1]}
               loop
               muted
-              poster={`img/hero-${upcomingIndex}-poster.png`}
               className="size-64 origin-center scale-150 object-cover object-center"
               onLoadedData={handleVideoLoad}
             />
@@ -133,7 +126,6 @@ const Hero = () => {
           src={videoSrcs[currentIndex - 1]}
           loop
           muted
-          
           className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
           onLoadedData={handleVideoLoad}
         />
@@ -144,7 +136,6 @@ const Hero = () => {
           autoPlay
           loop
           muted
-          
           className="absolute left-0 top-0 size-full object-cover object-center"
           onLoadedData={handleVideoLoad}
         />
