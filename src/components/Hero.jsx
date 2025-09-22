@@ -98,6 +98,8 @@ const Hero = () => {
                 <div className='mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg'>
                   <div onClick={handleMiniVdClick} className='origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100'>
                     <video 
+                      width="640"
+                      height="640"
                       ref={nextVideoRef} 
                       src={getVideoSrc(upcomingVideoIndex)} 
                       loop
@@ -110,6 +112,8 @@ const Hero = () => {
                 </div>
 
                 <video
+                  width="640"
+                  height="640"
                   ref={nextVideoRef}
                   src={getVideoSrc(currentIndex)}
                   loop
@@ -121,6 +125,8 @@ const Hero = () => {
 
                 <video
                   src={getVideoSrc(currentIndex === totalVideos + 1 ? 1 : currentIndex)}
+                  width="1800"
+                  height="1200"
                   autoPlay
                   loop
                   muted
