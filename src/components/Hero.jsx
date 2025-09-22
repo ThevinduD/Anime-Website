@@ -4,6 +4,7 @@ import { TiLocationArrow } from 'react-icons/ti';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
@@ -84,7 +85,7 @@ const Hero = () => {
     <div className='relative h-dvh w-screen overflow-x-hidden'>
       {isLoading && (
         <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-violet-50">
-          {/* https://uiverse.io/G4b413l/tidy-walrus-92 */}
+          
           <div className="three-body">
             <div className="three-body__dot"></div>
             <div className="three-body__dot"></div>
@@ -120,7 +121,7 @@ const Hero = () => {
 
                 <video
                   src={getVideoSrc(currentIndex === totalVideos + 1 ? 1 : currentIndex)}
-                  //autoPlay
+                  autoPlay
                   loop
                   muted
                   className='absolute left-0 top-0 size-full object-cover object-center'
@@ -135,7 +136,7 @@ const Hero = () => {
             <div className='absolute left-0 top-0 z-40 size-full'>
               <div className='mt-24 px-5 sm:px-10'>
                 <h1 className='special-font hero-heading text-blue-100'>redefi<b>n</b>e</h1>
-                <p className='mb-5 max-w-64 font-robert-regular text-blue-100'>Enter the Metagame Layer <br /> Unleash the Play Economy</p>
+                <p className='mb-5 max-w-64 font-robert-medium text-blue-100 '>Enter the Metagame Layer <br /> Unleash the Play Economy</p>
 
                 <Button id='watch-trailer' title='Watch Trailer' leftIcon={<TiLocationArrow/>} containerClass='!bg-yellow-300 flex-center gap-1' />
               </div>

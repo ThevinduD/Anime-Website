@@ -4,7 +4,7 @@ import { TiLocationArrow } from 'react-icons/ti';
 import { useWindowScroll } from 'react-use';
 import gsap from 'gsap';
 
-const navItems = ['Nexus', 'Vault', 'Prologue', 'About', 'Contact']
+const navItems = ['Nexus', 'Prologue', 'Features', 'About', 'Contact']
 
 const Navbar = () => {
 
@@ -31,7 +31,7 @@ const Navbar = () => {
         }
 
         setLastScrollY(currentScrollY)
-    }, [currentScrollY, lastScrollY])
+    }, [currentScrollY])
 
     useEffect(() => {
         gsap.to(navContainerRef.current, {
