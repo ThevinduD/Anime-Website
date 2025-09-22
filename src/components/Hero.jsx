@@ -14,8 +14,6 @@ const Hero = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedVideos, setLoadedVideos] = useState(0);
 
-  const [videoSrcs, setVideoSrcs] = useState(Array(totalVideos).fill(null));
-
   const videoRefs = useRef([]);
   videoRefs.current = [];
 
@@ -25,32 +23,18 @@ const Hero = () => {
 
   const handleVideoLoad = () => setLoadedVideos((prev) => prev + 1);
 
-  const upcomingIndex = (currentIndex % totalVideos) + 1;
-
-  const lazyLoadVideo = (index) => {
-    if (!videoSrcs[index]) {
-      setVideoSrcs((prev) => {
-        const copy = [...prev];
-        copy[index] = `videos/hero-${index + 1}.mp4`;
-        return copy;
-      });
-    }
-  };
-
-  useEffect(() => {
-    lazyLoadVideo(currentIndex - 1);
-    lazyLoadVideo(upcomingIndex - 1);
-  }, [currentIndex]);
+  const upcomingVideoIndex = (currentIndex % totalVideos) + 1;
 
   const handleMiniVdClick = () => {
     setHasClicked(true);
-    setCurrentIndex(upcomingIndex);
+    setCurrentIndex(upcomingVideoIndex);
   };
 
   useEffect(() => {
-    if (loadedVideos >= 1) setIsLoading(false);
+    if (loadedVideos >= totalVideos) setIsLoading(false);
   }, [loadedVideos]);
 
+  // GSAP animations
   useEffect(() => {
     if (hasClicked && videoRefs.current[1]) {
       gsap.set(videoRefs.current[1], { visibility: 'visible' });
@@ -90,6 +74,8 @@ const Hero = () => {
     });
   }, [currentIndex, hasClicked]);
 
+  const getVideoSrc = (index) => `videos/hero-${index}.mp4`;
+
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
       {isLoading && (
@@ -103,7 +89,6 @@ const Hero = () => {
       )}
 
       <div id="video-frame" className="relative z-10 h-dvh w-screen overflow-x-hidden rounded-lg bg-blue-75">
-        {/* Mini / preview video */}
         <div className="absolute-center size-64 cursor-pointer overflow-hidden rounded-lg z-50">
           <div
             onClick={handleMiniVdClick}
@@ -111,7 +96,7 @@ const Hero = () => {
           >
             <video
               ref={addToRefs}
-              src={videoSrcs[upcomingIndex - 1]}
+              src={getVideoSrc(upcomingVideoIndex)}
               loop
               muted
               className="size-64 origin-center scale-150 object-cover object-center"
@@ -120,19 +105,17 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Next video for animation */}
         <video
           ref={addToRefs}
-          src={videoSrcs[currentIndex - 1]}
+          src={getVideoSrc(currentIndex)}
           loop
           muted
           className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
           onLoadedData={handleVideoLoad}
         />
 
-        {/* Main video */}
         <video
-          src={videoSrcs[currentIndex - 1]}
+          src={getVideoSrc(currentIndex)}
           autoPlay
           loop
           muted
