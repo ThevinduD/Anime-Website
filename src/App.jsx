@@ -1,12 +1,15 @@
+import React, { Suspense } from "react"
 import About from "./components/About"
 import Contact from "./components/Contact"
-import Features from "./components/Features"
 import Hero from "./components/Hero"
 import Navbar from "./components/Navbar"
 import Story from "./components/Story"
 import Footer from "./components/Footer"
 
+const Features = React.lazy(() => import("./components/Features"))
+
 import { ReactLenis } from 'lenis/react'
+
 
 const App = () => {
   return (
@@ -15,7 +18,9 @@ const App = () => {
         <Navbar/>
         <Hero/>
         <About/>
-        <Features/>
+        <Suspense fallback={<div>Loading features…</div>}>
+          <Features/>
+        </Suspense>
         <Story/>
         <Contact/>
         <Footer/>
