@@ -50,5 +50,5 @@ npm run dev
 yarn dev
 ```
 
-Open http://localhost:3000 in your browser to see the application.
+Open http://localhost:5173 in your browser to see the application.
 
