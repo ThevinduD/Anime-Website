@@ -1,12 +1,54 @@
-# React + Vite
+# Anime Gaming Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+Step into a world where anime meets gaming. This modern, sleek website is built with React, styled with TailwindCSS, and brought to life with jaw-dropping GSAP animations. Every scroll, hover, and transition feels smooth and cinematic, pulling you deeper into the vibe. 
+It’s not just a website — it’s an experience designed to spark excitement, inspire creativity, and fuel your passion for both anime and gaming.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features 
 
-## Expanding the ESLint configuration
+- **User-Friendly Navigation:** Simple and intuitive navigation structure for ease of use.
+- **Responsive Design:** Fully responsive to ensure a consistent experience across all device types.
+- **Smooth Animations:** Stunning GSAP-powered animations that bring every scroll and interaction to life.
+- **Fast Performance:** Optimized React build for lightning-fast load times.
+- **Engaging Visuals:** High-quality anime and gaming visuals that captivate and inspire users.
+- **Interactive Elements:** Hover effects, transitions, and micro-animations that keep users engaged.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Technologies 
+
+- **Frontend:** Built with React and Tailwind CSS for responsive, modern UI components.
+- **Animations:** Powered by GSAP (GreenSock Animation Platform) for smooth, cinematic motion effects.
+- **Styling Architecture:** Utility-first approach with TailwindCSS for consistent and scalable design.
+- **JavaScript(ES6+):** Modern JavaScript features for clean, efficient code.
+  
+---
+
+## Getting Started
+### Prerequisites
+
+- Node.js (v18+)
+- npm or yarn
+
+## Installation
+### Clone the Repository
+```bash
+git clone https://github.com/ThevinduD/Anime-Website.git
+cd Anime-Website
+```
+
+### Install dependencies
+```bash 
+npm install
+# or
+yarn install
+```
+
+### Run the development server
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open http://localhost:3000 in your browser to see the application.
+
